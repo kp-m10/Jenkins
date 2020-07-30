@@ -1,4 +1,9 @@
 <html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="style.css">
+        <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+        </head>
         <style>
             body {margin:0;}
             .my_image{
@@ -9,6 +14,7 @@
                 background-repeat: no-repeat;
                 background-size: cover;
                 position: relative;
+                transition: 0.5sec ease;
             }
             .text {
                 text-align: center;
@@ -19,42 +25,126 @@
                 color: black;
                      }
             
-            ul {
-                            list-style-type: none;
-                            margin: 0;
-                            padding: 0;
-                            overflow: hidden;
-                            background-color: #333;
-                            position: fixed;
-                            top: 0;
-                            width: 100%;
-                          }
+                     *{
+                        margin: 0;
+                        padding: 0;
+                        list-style: none;
+                        text-decoration: none;
+                    }
+                    
+                    .sidebar{
+                        position: fixed;
+                        left: -250px;
+                        width: 250px;
+                        height: 100%;
+                        background: rgba(255, 254, 175, 0.938);
+                        transition: all .5s ease;
+                    }
+                    .sidebar header{
+                        font-size: 22px;
+                        text-transform: uppercase;
+                        color: black;
+                        text-align: center;
+                        line-height: 60px;
+                        background: rgba(253, 242, 83, 0.877);
+                        user-select: none;
+                        border-bottom: 1px solid rgba(0, 0, 0);
             
-            li {
-                            float: left;
-                          }
+                    }
+                    .sidebar ul a{
+                        display: block;
+                        width: 100%;
+                        line-height: 65px;
+                        font-size: 20px;
+                        color: black;
+                        padding-left: 40px;
+                        box-sizing: border-box;
+                        /* border-top: 1px solid rgba(255, 255, 255, 0.1); */
+                        /* border-bottom: 1px solid black; */
+                        transition: .4s;
+                    }
+                    .sidebar ul li a {
+                        color: black;
+                        display: block;
+                        cursor: pointer;
+                        
+                    }
+                    ul li:hover a{
+                        padding-left: 50px;
+                    }
+                    .sidebar ul a i{
+                        margin-left: 16px;
+                    }
+                    #check{
+                        display: none;
+                    }
             
-            li a {
-                              display: block;
-                              color: white;
-                              text-align: center;
-                              padding: 14px 16px;
-                              text-decoration: none;
-                          }
+                    label #btn, label #cancel{
+                        position: absolute;
+                        cursor: pointer;
+                        background: rgb(255, 153, 0);
+                        border-radius: 1px;
+                    }
             
-            li a:hover:not(.active) {
-                            background-color: grey;
-                          }
+                    a{
+                        border-bottom: 1px solid rgba(0, 0, 0);
+                    }
+                    label #btn{
+                        left: 40px;
+                        top: 25px;
+                        font-size: 25px;
+                        color: white;
+                        padding: 4px 10px;
+                        transition: all .5s ;
+                    }
+                    i{
+                        margin-right: 5px;
+                    }
+            
+                    label #cancel{
+                        z-index: 111;
+                        left: -195px;
+                        top: 17px;
+                        font-size: 15px;
+                        color: white;
+                        padding: 4px 9px;
+                        transition: all .5s ease;
+                    }
+            
+                    #check:checked ~ .sidebar{
+                        left: 0;
+                    }
+            
+                    #check:checked ~ label #btn{
+                        left: 250px;
+                        opacity: 0;
+                        pointer-events: none;
+            
+                    }
+                    #check:checked ~ label #cancel{
+                        left: 195px;
+                    }
+            
+                    #check:checked ~ .my_image text{ 
+                        margin-left: 250px;
+                    }
                     </style>
                     <body>
         <div class="my_image">
-            <ul>
-                <li><a href="{{ url_for('create') }}">Create Key</a></li>
-                <li><a href="{{ url_for('display') }}">Display Key</a></li>
-                <li><a href="{{ url_for('delete')}}">Delete Key</a></li>
-                <li><a href="{{ url_for('vm_create')}}">Create a VM</a></li>>
-            </ul>  
+            <input type="checkbox" id="check">
+    <label for="check">
+        <i class="fas fa-bars" id="btn"></i>
+        <i class="fas fa-times" id="cancel"></i>
+        </label>
+    <div class="sidebar">
+        <header> Menu</header>
+        <ul>
+            <li><a href="{{url_for('create')}}"><i class="fas fa-fingerprint"></i>Key Creation</a></li>
+            <li><a href="{{url_for('display')}}"><i class="fas fa-fingerprint"></i>Key Display</a></li>
+            <li><a href="{{url_for('delete')}}"><i class="fas fa-fingerprint"></i>Key Delete</a></li>
+            <li><a href="{{url_for('vm_create')}}"><i class="fas fa-desktop"></i>Virtual Machine</a></li>
+        </ul>
+    </div>  
                 </div>    
                 </body>
                 </html>
-
