@@ -13,7 +13,6 @@ def home():
 def create():
     return render_template('create.html')
 
-
 @app.route('/created',methods=['POST'])
 def created():
     key1= request.form['key']
