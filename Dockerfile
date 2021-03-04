@@ -13,9 +13,9 @@ RUN pip3 install -r requirements.txt
 
 RUN pip3 install --upgrade pip
 
-RUN sudo pip3 install boto3
+RUN pip3 install boto3
 
-RUN sudo pip3 install awscli
+RUN pip3 install awscli
 
 WORKDIR /app
 
