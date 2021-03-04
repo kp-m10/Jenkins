@@ -1,4 +1,3 @@
-import sys
 import os
 from flask import Flask, request, render_template
 import boto3
